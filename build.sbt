@@ -20,7 +20,7 @@ resolvers ++= Seq(
 
 // Add a single dependency
 libraryDependencies ++= Seq(
-   "net.sf.ehcache" % "ehcache" % "2.5.1" from "http://repo1.maven.org/maven2/net/sf/ehcache/ehcache/2.5.1/ehcache-2.5.1.pom",
+   "net.sf.ehcache" % "ehcache" % "2.5.2" from "http://repo1.maven.org/maven2/net/sf/ehcache/ehcache/2.5.2/ehcache-2.5.2.pom",
    "net.sf.ehcache" % "ehcache-jgroupsreplication" % "1.5",
    "javax.transaction" % "jta" % "1.1",
    "org.slf4j" % "slf4j-jdk14" % "1.6.4"
