@@ -34,7 +34,7 @@
       statistics="false"
       />
 
-  <cache name="bsrCache"
+  <cache name="jgroupsCache"
          maxElementsInMemory="10000"
          maxElementsOnDisk="1000"
          eternal="false"
