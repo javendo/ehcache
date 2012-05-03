@@ -11,7 +11,6 @@
       class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
       properties="connect=
                   UDP(
-                     bind_addr=192.168.0.100;
                      mcast_addr=224.10.10.10;
                      mcast_port=45588;
                      tos=8;
@@ -48,26 +47,18 @@
                      max_interval=30000;
                      min_interval=10000):
                   FD_SOCK:
-                  FD_ALL:
                   VERIFY_SUSPECT(
                      timeout=1500):
-                  BARRIER:
                   pbcast.NAKACK(
-                     exponential_backoff=300;
-                     use_mcast_xmit=false;
-                     discard_delivered_msgs=true):
-                  UNICAST:
+                     gc_lag=10;
+                     retransmit_timeout=3000):
+                  UNICAST2:
                   pbcast.STABLE(
-                     stability_delay=1000;
-                     desired_avg_gossip=50000;
-                     max_bytes=4M):
+                     desired_avg_gossip=20000):
                   pbcast.GMS(
                      print_local_addr=true;
-                     join_timeout=3000;
-                     view_bundling=true):
-                  FRAG2(
-                     frag_size=60K):
-                  pbcast.STATE_TRANSFER"
+                     join_timeout=5000):
+                  FRAG2"
       propertySeparator="::" />
 
   <defaultCache
