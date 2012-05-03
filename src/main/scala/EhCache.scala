@@ -17,17 +17,7 @@ object Reader {
       println("Enter the value to be recovered from the cache: ")
       Console.readLine() match {
         case "99" => System.exit(0)
-        case x => {
-          try {
-            println(cache.get(x))
-          }
-          catch {
-            case _ => {
-              cache = CacheManager.create().getCache("jgroupsCache")
-              println(cache.get(x))
-            }
-          }
-        }
+        case x => println(cache.get(x))
       }
     }
   }
@@ -40,17 +30,7 @@ object Writer {
       println("Enter the value to be stored in the cache: ");
       Console.readLine() match {
         case "99" => System.exit(0)
-        case x => {
-          try {
-            cache.put(new Element(x, x + " in cache"))
-          }
-          catch {
-            case _ => {
-              cache = CacheManager.create().getCache("jgroupsCache")
-              cache.put(new Element(x, x + " in cache"))
-            }
-          }
-        }
+        case x => { cache.remove(x); cache.put(new Element(x, x + " in cache")) }
       }
     }
   }
