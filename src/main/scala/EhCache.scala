@@ -11,28 +11,46 @@ object EhCache extends App {
 }
 
 object Reader {
-  def manager = CacheManager.create()
-  def cache = manager.getCache("jgroupsCache")
   def exec = {
+    var cache = CacheManager.create().getCache("jgroupsCache")
     while (true) {
-      println("Enter the value to be recovered from the cache: ");
+      println("Enter the value to be recovered from the cache: ")
       Console.readLine() match {
         case "99" => System.exit(0)
-        case x => { println(cache.get(x)); cache.flush }
+        case x => {
+          try {
+            println(cache.get(x))
+          }
+          catch {
+            case _ => {
+              cache = CacheManager.create().getCache("jgroupsCache")
+              println(cache.get(x))
+            }
+          }
+        }
       }
     }
   }
 }
 
 object Writer {
-  def manager = CacheManager.create()
-  def cache = manager.getCache("jgroupsCache")
   def exec = {
+    var cache = CacheManager.create().getCache("jgroupsCache")
     while (true) {
       println("Enter the value to be stored in the cache: ");
       Console.readLine() match {
         case "99" => System.exit(0)
-        case x => { cache.put(new Element(x, x + " in cache")) }
+        case x => {
+          try {
+            cache.put(new Element(x, x + " in cache"))
+          }
+          catch {
+            case _ => {
+              cache = CacheManager.create().getCache("jgroupsCache")
+              cache.put(new Element(x, x + " in cache"))
+            }
+          }
+        }
       }
     }
   }
